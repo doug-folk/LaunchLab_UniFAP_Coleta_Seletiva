@@ -1,41 +1,4 @@
-#coleta
-
-
-CONFIG_NEGOCIO = {
-
-    "materiais": {
-
-        "Plástico": {
-            "densidade": 0.90
-        },
-
-        "Vidro": {
-            "densidade": 2.50
-        },
-
-        "Metal": {
-            "densidade": 7.80
-        }
-    },
-
-    "frota": {
-
-        # caminhão
-        "capacidade_volume_litros": 10000,
-
-        # alerta
-        "limite_compliance_percentual": 90,
-
-        # ociosidade
-        "carga_minima_percentual": 30
-    },
-
-    "rota": {
-
-        # Custo o por quilômetro
-        "custo_km": 20.50
-    }
-}
+from src.config_negocio import CONFIG_NEGOCIO, calcular_custo_ociosidade
 
 
 #CALCULAR VOLUME
@@ -398,6 +361,11 @@ def mostrar_resultado(
         distancia_total
     )
 
+    custo_ociosidade = calcular_custo_ociosidade(
+        percentual,
+        custo
+    )
+
     
     print("          ROTA DEFINIDA")
     
@@ -483,6 +451,11 @@ def mostrar_resultado(
         print(
             "A carga está abaixo de "
             f"{carga_minima}% da capacidade."
+        )
+
+        print(
+            f"Custo de ociosidade: "
+            f"R$ {custo_ociosidade:.2f}"
         )
 
     else:
