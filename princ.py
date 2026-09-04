@@ -1,4 +1,4 @@
-from src.config_negocio import CONFIG_NEGOCIO
+from src.config_negocio import CONFIG_NEGOCIO, calcular_custo_ociosidade
 
 
 #CALCULAR VOLUME
@@ -361,6 +361,11 @@ def mostrar_resultado(
         distancia_total
     )
 
+    custo_ociosidade = calcular_custo_ociosidade(
+        percentual,
+        custo
+    )
+
     
     print("          ROTA DEFINIDA")
     
@@ -446,6 +451,11 @@ def mostrar_resultado(
         print(
             "A carga está abaixo de "
             f"{carga_minima}% da capacidade."
+        )
+
+        print(
+            f"Custo de ociosidade: "
+            f"R$ {custo_ociosidade:.2f}"
         )
 
     else:

@@ -15,3 +15,14 @@ CONFIG_NEGOCIO = {
         "custo_km": 20.50,
     },
 }
+
+
+def calcular_custo_ociosidade(percentual_carga, custo_rota):
+    """Calcula a parcela do custo da rota perdida por carga insuficiente."""
+    carga_minima = CONFIG_NEGOCIO["frota"]["carga_minima_percentual"]
+
+    if percentual_carga >= carga_minima:
+        return 0
+
+    percentual_faltante = (carga_minima - percentual_carga) / carga_minima
+    return custo_rota * percentual_faltante
